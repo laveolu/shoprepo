@@ -68,4 +68,17 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
+  #Provision chef-server container and expose port 443 on the container
+  # config.vm.provision "docker" do |d|
+  #   d.pull_images "base/chef-server"
+  #   d.run "base/chef-server",
+  #    args: "-d --privileged -p 443:443"
+  #
+  #  #d.pull_images "vagrant"
+  # end
+
+  config.vm.provision "chef_solo" do |chef|
+    chef.add_recipe "docker"
+  end
+
 end
